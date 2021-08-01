@@ -21,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		125852D637A41B572EED1EC6 /* Pods-Realm9.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Realm9.debug.xcconfig"; path = "Target Support Files/Pods-Realm9/Pods-Realm9.debug.xcconfig"; sourceTree = "<group>"; };
+		4A007B7126B707A1007163E2 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		95EE2C876F43FB42C586B045 /* Pods_Realm9.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Realm9.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2AFBD6E77CADE746D0B633 /* Pods-Realm9.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Realm9.release.xcconfig"; path = "Target Support Files/Pods-Realm9/Pods-Realm9.release.xcconfig"; sourceTree = "<group>"; };
 		CE3EEBF92559BA7200EE29DA /* Realm9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Realm9.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +152,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = CE3EEBF02559BA7200EE29DA;
 			productRefGroup = CE3EEBFA2559BA7200EE29DA /* Products */;
@@ -238,6 +240,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE3EEC082559BA7300EE29DA /* Base */,
+				4A007B7126B707A1007163E2 /* ja */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -310,6 +314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
