@@ -1,7 +1,6 @@
 import SwiftUI
 import RealmSwift
 
-
 class Model: Object {
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var task = ""
@@ -32,8 +31,8 @@ class viewModel: ObservableObject {
         token = myModelResults?.observe { [weak self] _ in
             self?.cellModels = self?.myModelResults?.map { ContentViewCellModel(id: $0.id, task: $0.task, task2: $0.task2, task3: $0.task3, pick1: $0.pick1, isON: $0.isON, date: $0.date) } ?? []
         }
-            }
-
+    }
+    
     deinit {
         token?.invalidate()
     }
@@ -54,7 +53,7 @@ struct EnterView: View {
     @State private var alert1 = false
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var sentakusi = ["練習・課題","出欠席","その他"]
+    @State private var sentakusi = ""
 
     var dateFormat: DateFormatter {
         let dformat = DateFormatter()
@@ -73,31 +72,31 @@ struct EnterView: View {
 
         NavigationView {
             ZStack{
-            backGroundColor.edgesIgnoringSafeArea(.all)
-            Form {
-                Section(header: Text("入力画面")) {
-                    TextField("[タイトル]を入力してください", text: $task)
-                    TextField("[内容,Do]を入力してください", text: $task2)
-                    DatePicker(selection: $date, displayedComponents: .date,label: {Text("登録日時")} )
-                    HStack {
-                        Text("お気に入り")
-                        Toggle(isOn: $isON) {
-                        EmptyView()
+                backGroundColor.edgesIgnoringSafeArea(.all)
+                Form {
+                    Section(header: Text("入力画面")) {
+                        TextField("[タイトル]を入力してください", text: $task)
+                        TextField("[内容]を入力してください", text: $task2)
+                        DatePicker(selection: $date, displayedComponents: .date,label: {Text("登録日時")} )
+                        HStack {
+                            Text("お気に入り")
+                            Toggle(isOn: $isON) {
+                                EmptyView()
+                            }
                         }
                     }
-                }
-                Section(header: Text("カスタムタイプを選択")) {
-                    
-                    //-Picker--------------------------
-                    Picker(selection: $pick1,
-                           label: Text("")) {
-                        Text("\(profile.username)").tag(0)
-                        Text("\(profile.username2)").tag(1)
-                        Text("\(profile.username3)").tag(2)
-                    }.pickerStyle(SegmentedPickerStyle())
-                    //-Picker--------------------------
-                    
-                }
+                    Section(header: Text("定型選択肢を選択")) {
+                        
+                        //-Picker--------------------------
+                        Picker(selection: $pick1,
+                               label: Text("")) {
+                            Text("\(profile.username)").tag(0)
+                            Text("\(profile.username2)").tag(1)
+                            Text("\(profile.username3)").tag(2)
+                        }.pickerStyle(SegmentedPickerStyle())
+                        //-Picker--------------------------
+                        
+                    }
                 Section{
                     HStack{
                         Spacer()
@@ -112,7 +111,15 @@ struct EnterView: View {
                                 let models = Realm9.Model()
                                 models.task = task
                                 models.task2 = task2
-                                models.task3 = sentakusi[pick1]
+                                
+                                if pick1 == 0 {
+                                    models.task3 = profile.username
+                                } else if pick1 == 1 {
+                                    models.task3 = profile.username2
+                                } else {
+                                    models.task3 = profile.username3
+                                }
+
                                 models.pick1 = pick1
                                 models.isON = isON
                                 models.date = date
@@ -134,12 +141,12 @@ struct EnterView: View {
                                 case false:
                                  return
                                     Alert(title: Text("注意"),
-                                     message: Text("[名前,タイトル]を入力してください"),
+                                     message: Text("[タイトル]を入力してください"),
                                      dismissButton: .default(Text("OK")))
                                 case true:
                                  return
                                     Alert(title: Text("確認"),
-                                          message: Text("\(task)さんの内容を登録しました。"),
+                                          message: Text("タイトル[\(task)]を登録しました。"),
                                     dismissButton: .default(Text("OK"),
                                     action: {
                                         task = ""
@@ -153,7 +160,7 @@ struct EnterView: View {
                     Spacer()
             }
         }
-            }.navigationBarTitle("Enter The Info")
+            }.navigationBarTitle("")
             }}
     }
     }

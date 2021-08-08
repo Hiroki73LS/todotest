@@ -20,9 +20,9 @@ struct Setting: View {
                     TextField("選択肢1", text: $profile.username)
                     TextField("選択肢2", text: $profile.username2)
                     TextField("選択肢3", text: $profile.username3)
-                    Stepper(value: $profile.level, in: 1...10) {
-                        Text("Level : \(profile.level)")
-                    }
+                  //  Stepper(value: $profile.level, in: 1...10) {
+                  //      Text("Level : \(profile.level)")
+                  //  }
                 }
             }
             .navigationTitle("Setting")
