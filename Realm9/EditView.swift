@@ -89,12 +89,12 @@ struct EditView: View {
                                 case false:
                                  return
                                     Alert(title: Text("注意"),
-                                     message: Text("[名前,タイトル]を入力してください"),
+                                     message: Text("[タイトル]を入力してください"),
                                      dismissButton: .default(Text("OK")))
                                 case true:
                                  return
                                     Alert(title: Text("確認"),
-                                          message: Text("\(task)さんの内容を更新しました。"),
+                                          message: Text("タイトル[\(task)]の内容を更新しました。"),
                                     dismissButton: .default(Text("OK"),
                                     action: {
                                         task = ""
