@@ -16,7 +16,7 @@ struct EditView: View {
     @State private var toSave = false
     @State private var alert = false
     @State private var alert1 = false
-    @State private var sentakusi = ["練習・課題","出欠席","その他"]
+    @State private var sentakusi = ""
 
     var dateFormat: DateFormatter {
         let dformat = DateFormatter()
@@ -33,8 +33,8 @@ struct EditView: View {
             backGroundColor.edgesIgnoringSafeArea(.all)
             Form {
                 Section(header: Text("Title & Doの入力")) {
-                    TextField("[名前,タイトル]を入力してください", text: $task)
-                    TextField("[内容,Do]を入力してください", text: $task2)
+                    TextField("[タイトル]を入力してください", text: $task)
+                    TextField("[内容]を入力してください", text: $task2)
                     DatePicker(selection: $date, displayedComponents: .date,label: {Text("登録日時")} )
                     HStack {
                         Text("お気に入り")
@@ -74,7 +74,15 @@ struct EditView: View {
                                     results?.task = task
                                     results?.task2 = task2
                                     results?.pick1 = pick1
-                                    results?.task3 = sentakusi[pick1]
+                                    
+                                    if pick1 == 0 {
+                                        results?.task3 = profile.username
+                                    } else if pick1 == 1 {
+                                        results?.task3 = profile.username2
+                                    } else {
+                                        results?.task3 = profile.username3
+                                    }
+                                    
                                     results?.isON = isON
                                 }
                 //-書き込み--------------------------
